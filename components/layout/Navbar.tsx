@@ -43,21 +43,13 @@ export default function Navbar() {
         <div className="max-w-[1200px] mx-auto px-6 h-14 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center gap-2.5">
-            <div
-              className="w-6 h-6 rounded-[6px] flex items-center justify-center"
-              style={{ background: "var(--accent)" }}
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <rect x="1" y="1" width="3" height="3" rx="0.5" fill="var(--background)" />
-                <rect x="5.5" y="1" width="3" height="3" rx="0.5" fill="var(--background)" fillOpacity="0.6" />
-                <rect x="10" y="1" width="3" height="3" rx="0.5" fill="var(--background)" fillOpacity="0.3" />
-                <rect x="1" y="5.5" width="3" height="3" rx="0.5" fill="var(--background)" fillOpacity="0.8" />
-                <rect x="5.5" y="5.5" width="3" height="3" rx="0.5" fill="var(--background)" fillOpacity="0.4" />
-                <rect x="10" y="5.5" width="3" height="3" rx="0.5" fill="var(--background)" fillOpacity="0.1" />
-                <rect x="1" y="10" width="3" height="3" rx="0.5" fill="var(--background)" fillOpacity="0.2" />
-                <rect x="5.5" y="10" width="3" height="3" rx="0.5" fill="var(--background)" fillOpacity="0.05" />
-              </svg>
-            </div>
+            <img
+              src="/icon.png"
+              alt="Gitmap logo"
+              width={24}
+              height={24}
+              className="rounded-[6px]"
+            />
             <span className="text-foreground font-semibold text-sm tracking-tight">
               Gitmap
             </span>
