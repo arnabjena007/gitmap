@@ -360,6 +360,35 @@ export default function Home() {
     return transformRawContributions(rawContributions, range);
   }, [rawContributions, username, range]);
 
+  const stats = React.useMemo(() => {
+    const days = computedData.flatMap((w) => w.days).filter((d): d is NonNullable<typeof d> => d !== null);
+    const sorted = [...days].sort((a, b) => a.date.getTime() - b.date.getTime());
+
+    const total = sorted.reduce((s, d) => s + d.count, 0);
+
+    // Current streak (from today backwards)
+    let currentStreak = 0;
+    for (let i = sorted.length - 1; i >= 0; i--) {
+      if (sorted[i].count > 0) currentStreak++;
+      else break;
+    }
+
+    // Longest streak
+    let longest = 0, run = 0;
+    for (const d of sorted) {
+      if (d.count > 0) { run++; longest = Math.max(longest, run); }
+      else run = 0;
+    }
+
+    // Busiest day
+    const busiest = sorted.reduce((best, d) => d.count > best.count ? d : best, sorted[0]);
+    const busiestLabel = busiest && busiest.count > 0
+      ? busiest.date.toLocaleDateString("en-US", { month: "short", day: "numeric" })
+      : "—";
+
+    return { total, currentStreak, longest, busiestLabel, busiestCount: busiest?.count ?? 0 };
+  }, [computedData]);
+
   const themeObj = customTheme && themeId === customTheme.id
     ? customTheme
     : getTheme(themeId);
@@ -707,11 +736,14 @@ export default function App() {
           </div>
         )}
 
-        {/* Heatmap Grid container - Floating cleanly on background, no box */}
+        {/* Heatmap Grid container */}
         <div className="py-6 overflow-hidden rounded-xl">
           <div className="mb-3 flex items-center justify-between">
             <span className="text-xs font-mono text-muted">
               @{username}&apos;s contributions
+            </span>
+            <span className="text-xs font-mono text-accent font-semibold">
+              {stats.total.toLocaleString()} total
             </span>
           </div>
           <HeatmapGrid
@@ -728,7 +760,24 @@ export default function App() {
             data={computedData}
           />
 
-
+          {/* Stats bar */}
+          <div className="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {[
+              { label: "Total", value: stats.total.toLocaleString(), sub: `in ${range}d` },
+              { label: "Current Streak", value: `${stats.currentStreak}d`, sub: stats.currentStreak === 1 ? "day" : "days" },
+              { label: "Longest Streak", value: `${stats.longest}d`, sub: stats.longest === 1 ? "day" : "days" },
+              { label: "Busiest Day", value: stats.busiestLabel, sub: stats.busiestCount > 0 ? `${stats.busiestCount} contributions` : "no data" },
+            ].map(({ label, value, sub }) => (
+              <div
+                key={label}
+                className="flex flex-col gap-0.5 px-3 py-2.5 rounded-lg border border-border bg-card/30"
+              >
+                <span className="text-[10px] font-mono text-muted uppercase tracking-wider">{label}</span>
+                <span className="text-base font-bold font-mono text-foreground leading-tight">{value}</span>
+                <span className="text-[10px] font-mono text-muted/60">{sub}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
