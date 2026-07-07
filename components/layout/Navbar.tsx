@@ -76,7 +76,7 @@ export default function Navbar() {
             </button>
 
             <a
-              href="https://github.com"
+              href="https://github.com/arnabjena007/gitmap"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-lg text-muted hover:text-foreground hover:bg-card transition-colors"
