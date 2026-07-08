@@ -13,13 +13,13 @@ Beautiful GitHub-style contribution heatmaps for React applications.
 ## Installation
 
 ```bash
-npm install gitmap
+npm install @arnabjena007/gitmap
 ```
 
 ## Usage
 
 ```tsx
-import { Gitmap } from 'gitmap';
+import { Gitmap } from '@arnabjena007/gitmap';
 
 export default function App() {
   return (

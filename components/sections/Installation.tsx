@@ -7,10 +7,10 @@ import CodeBlock from "@/components/ui/CodeBlock";
 type PM = "pnpm" | "npm" | "bun" | "yarn";
 
 const INSTALL_CMDS: Record<PM, string> = {
-  pnpm: "pnpm add gitmap",
-  npm: "npm install gitmap",
-  bun: "bun add gitmap",
-  yarn: "yarn add gitmap",
+  pnpm: "pnpm add @arnabjena007/gitmap",
+  npm: "npm install @arnabjena007/gitmap",
+  bun: "bun add @arnabjena007/gitmap",
+  yarn: "yarn add @arnabjena007/gitmap",
 };
 
 const TABS: PM[] = ["pnpm", "npm", "bun", "yarn"];

@@ -6,7 +6,7 @@ import CodeBlock from "@/components/ui/CodeBlock";
 import HeatmapGrid from "@/components/heatmap/HeatmapGrid";
 import { getTheme } from "@/lib/themes";
 
-const DEFAULT_CODE = `import { Gitmap } from 'gitmap';
+const DEFAULT_CODE = `import { Gitmap } from '@arnabjena007/gitmap';
 
 export default function App() {
   return (
@@ -135,7 +135,7 @@ export default function QuickStart() {
           <CodeBlock
             language="tsx"
             showLineNumbers
-            code={`import { Gitmap } from 'gitmap';
+            code={`import { Gitmap } from '@arnabjena007/gitmap';
 
 const data = [
   { date: '2026-01-01', count: 4 },

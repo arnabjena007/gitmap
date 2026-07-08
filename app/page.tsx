@@ -458,7 +458,7 @@ export default function Home() {
   }`
     : `"${themeId}"`;
 
-  const usageCode = `import { Gitmap, useGitmapStats } from 'gitmap';
+  const usageCode = `import { Gitmap, useGitmapStats } from '@arnabjena007/gitmap';
 
 export default function App() {
   const stats = useGitmapStats("${username}");
@@ -491,7 +491,7 @@ export default function App() {
 <div id="gitmap-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px"></div>
 
 <!-- Load UMD Script from CDN -->
-<script src="https://unpkg.com/gitmap@latest/dist/index.umd.js"></script>
+<script src="https://unpkg.com/@arnabjena007/gitmap@latest/dist/index.umd.js"></script>
 
 <!-- Render Heatmap + Stats -->
 <script>
