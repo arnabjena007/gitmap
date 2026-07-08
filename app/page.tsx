@@ -821,7 +821,7 @@ export default function App() {
         <h2 className="text-xl font-bold mb-4 text-foreground" style={{ fontFamily: "var(--font-geist-sans)" }}>
           Installation
         </h2>
-        <CodeBlock code="npm install gitmap" language="bash" />
+        <CodeBlock code="npm install @arnabjena007/gitmap" language="bash" />
       </section>
 
       {/* Usage */}
