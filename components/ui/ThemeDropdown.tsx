@@ -6,14 +6,17 @@ import { HeatmapTheme, THEMES } from "@/lib/themes";
 
 interface ThemeDropdownProps {
   value: string;
+  customTheme?: HeatmapTheme | null;
   onChange: (id: string) => void;
 }
 
-export default function ThemeDropdown({ value, onChange }: ThemeDropdownProps) {
+export default function ThemeDropdown({ value, customTheme, onChange }: ThemeDropdownProps) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const selectedTheme = THEMES.find((t) => t.id === value) ?? THEMES[0];
+  const selectedTheme = (customTheme && customTheme.id === value)
+    ? customTheme
+    : (THEMES.find((t) => t.id === value) ?? THEMES[0]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {

@@ -591,7 +591,7 @@ export default function App() {
             </div>
 
             {/* Theme selector */}
-            <ThemeDropdown value={themeId} onChange={handleThemeChange} />
+            <ThemeDropdown value={themeId} customTheme={customTheme} onChange={handleThemeChange} />
 
             {/* Randomize Button */}
             <button
