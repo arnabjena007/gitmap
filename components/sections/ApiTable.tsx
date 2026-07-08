@@ -174,7 +174,7 @@ export default function ApiTable() {
             <span className="text-[#ffa657]">DayData </span>
             {"{\n"}
             {"  "}
-            <span className="text-[#79c0ff]">date</span>: <span className="text-[#7AA2F7]">string</span>; <span className="text-[#6e7681]">// 'YYYY-MM-DD'</span>{"\n"}
+            <span className="text-[#79c0ff]">date</span>: <span className="text-[#7AA2F7]">string</span>; <span className="text-[#6e7681]">{"// 'YYYY-MM-DD'"}</span>{"\n"}
             {"  "}
             <span className="text-[#79c0ff]">count</span>: <span className="text-[#7AA2F7]">number</span>;{"\n"}
             {"}\n\n"}

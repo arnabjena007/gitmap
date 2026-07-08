@@ -19,7 +19,7 @@ export function generateHeatmapData(days = 365): WeekData[] {
   start.setDate(start.getDate() - dayOfWeek);
 
   const weeks: WeekData[] = [];
-  let current = new Date(start);
+  const current = new Date(start);
 
   while (current <= today) {
     const week: (DayData | null)[] = [];
@@ -112,7 +112,7 @@ export function transformRawContributions(
   });
 
   const weeks: WeekData[] = [];
-  let current = new Date(start);
+  const current = new Date(start);
 
   while (current <= today) {
     const week: (DayData | null)[] = [];
@@ -150,7 +150,7 @@ export function transformRawContributions(
 function sfc32(a: number, b: number, c: number, d: number) {
   return function() {
     a >>>= 0; b >>>= 0; c >>>= 0; d >>>= 0;
-    var t = (a + b) | 0;
+    let t = (a + b) | 0;
     a = b ^ (b >>> 9);
     b = (c + (c << 3)) | 0;
     c = (c << 21) | (c >>> 11);
@@ -164,7 +164,7 @@ function sfc32(a: number, b: number, c: number, d: number) {
 function getSeededRandom(str: string) {
   let h1 = 1779033703, h2 = 3024733165, h3 = 3362453659, h4 = 50249321;
   for (let i = 0; i < str.length; i++) {
-    let k = str.charCodeAt(i);
+    const k = str.charCodeAt(i);
     h1 = h2 ^ Math.imul(h1 ^ k, 597399067);
     h2 = h3 ^ Math.imul(h2 ^ k, 2869860233);
     h3 = h4 ^ Math.imul(h3 ^ k, 951274213);
@@ -186,7 +186,7 @@ export function generateSeededHeatmapData(username: string, days = 365): WeekDat
   start.setDate(start.getDate() - dayOfWeek);
 
   const weeks: WeekData[] = [];
-  let current = new Date(start);
+  const current = new Date(start);
 
   while (current <= today) {
     const week: (DayData | null)[] = [];

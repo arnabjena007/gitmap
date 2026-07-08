@@ -130,7 +130,7 @@ export default function QuickStart() {
           className="mt-6"
         >
           <p className="text-xs text-[#52525B] font-mono mb-3">
-            // Full usage with all props
+            {"// Full usage with all props"}
           </p>
           <CodeBlock
             language="tsx"

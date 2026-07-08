@@ -68,7 +68,7 @@ const JSIcon = ({ size = 14 }: { size?: number }) => (
 
 // Safe, placeholder-based syntax highlighting
 function highlight(code: string, lang: string): string {
-  let escaped = code
+  const escaped = code
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");

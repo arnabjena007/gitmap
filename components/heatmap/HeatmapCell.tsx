@@ -23,11 +23,9 @@ export default function HeatmapCell({
   day,
   theme,
   cellSize,
-  gap: _gap,
   shape = "rounded",
   showNumbers = false,
   useGradient = false,
-  showCounts = false,
   animationEnabled,
   delay = 0,
   isDimmed = false,
@@ -38,6 +36,7 @@ export default function HeatmapCell({
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 

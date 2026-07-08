@@ -148,6 +148,7 @@ export default function Demo({
 
     // Check memory cache first
     if (contributionsCache.has(trimmedUser)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setRawContributions(contributionsCache.get(trimmedUser) || []);
       setLoading(false);
       setError(null);
@@ -168,7 +169,7 @@ export default function Demo({
           contributionsCache.set(trimmedUser, contribs);
           setRawContributions(contribs);
         }
-      } catch (err: any) {
+      } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         if (active) {
           setError(err.message || "An error occurred");
           setRawContributions(null);

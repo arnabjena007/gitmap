@@ -276,6 +276,7 @@ export default function Home() {
   const [animationEnabled, setAnimationEnabled] = useState(true);
   const [showSettings, setShowSettings] = useState(false);
   const [showExport, setShowExport] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [customTheme, setCustomTheme] = useState<any | null>(null);
   const [randomPageColors, setRandomPageColors] = useState<PageColors | null>(null);
 
@@ -314,6 +315,7 @@ export default function Home() {
     if (!trimmedUser) return;
 
     if (contributionsCache.has(trimmedUser)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setRawContributions(contributionsCache.get(trimmedUser) || []);
       setLoading(false);
       setError(null);
@@ -334,7 +336,7 @@ export default function Home() {
           contributionsCache.set(trimmedUser, contribs);
           setRawContributions(contribs);
         }
-      } catch (err: any) {
+      } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
         if (active) {
           setError(err.message || "An error occurred");
           setRawContributions(null);
