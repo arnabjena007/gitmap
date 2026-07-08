@@ -37,6 +37,7 @@ export const metadata: Metadata = {
     title: "Gitmap",
     description: "Beautiful GitHub contribution heatmaps for React applications.",
   },
+  metadataBase: new URL("https://gitmap-devo.vercel.app/"),
 };
 
 export default function RootLayout({
