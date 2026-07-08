@@ -412,7 +412,7 @@ export default function Home() {
 
     const randomThemeObj = {
       id: randomId,
-      name: `Random ${colorName} 🎨`,
+      name: `${colorName} 🎨`,
       background: `hsl(${h}, 25%, 5%)`,
       levels: [
         `hsl(${h}, 18%, 10%)`,
