@@ -400,9 +400,19 @@ export default function Home() {
     const s = 70 + Math.floor(Math.random() * 25);
     const randomId = `random-${Date.now()}`;
 
+    // Get a human-readable name for the hue
+    let colorName = "Crimson";
+    if (h >= 15 && h < 45) colorName = "Amber";
+    else if (h >= 45 && h < 75) colorName = "Gold";
+    else if (h >= 75 && h < 150) colorName = "Emerald";
+    else if (h >= 150 && h < 195) colorName = "Cyan";
+    else if (h >= 195 && h < 255) colorName = "Sapphire";
+    else if (h >= 255 && h < 285) colorName = "Amethyst";
+    else if (h >= 285 && h < 330) colorName = "Magenta";
+
     const randomThemeObj = {
       id: randomId,
-      name: `Random HSL-${h} 🎨`,
+      name: `Random ${colorName} 🎨`,
       background: `hsl(${h}, 25%, 5%)`,
       levels: [
         `hsl(${h}, 18%, 10%)`,
