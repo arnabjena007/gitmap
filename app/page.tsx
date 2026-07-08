@@ -446,29 +446,42 @@ export default function Home() {
   }`
     : `"${themeId}"`;
 
-  const usageCode = `import { Gitmap } from 'gitmap';
+  const usageCode = `import { Gitmap, useGitmapStats } from 'gitmap';
 
 export default function App() {
+  const stats = useGitmapStats("${username}");
+
   return (
-    <Gitmap
-      username="${username}"
-      theme={${themeVal}}
-      cellSize={${cellSize}}
-      gap={${gap}}
-      shape="${shape}"
-      showNumbers={${showNumbers}}
-      useGradient={${useGradient}}
-    />
+    <div>
+      <Gitmap
+        username="${username}"
+        theme={${themeVal}}
+        cellSize={${cellSize}}
+        gap={${gap}}
+        shape="${shape}"
+        showNumbers={${showNumbers}}
+        useGradient={${useGradient}}
+      />
+
+      {/* Stats bar */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, marginTop: 16 }}>
+        <div><small>Total</small><strong>{stats.total}</strong></div>
+        <div><small>Current Streak</small><strong>{stats.currentStreak}d</strong></div>
+        <div><small>Longest Streak</small><strong>{stats.longestStreak}d</strong></div>
+        <div><small>Busiest Day</small><strong>{stats.busiestDay}</strong></div>
+      </div>
+    </div>
   );
 }`;
 
-  const jsEmbedCode = `<!-- Target element for Gitmap -->
+  const jsEmbedCode = `<!-- Target elements for Gitmap -->
 <div id="gitmap-heatmap"></div>
+<div id="gitmap-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px"></div>
 
 <!-- Load UMD Script from CDN -->
 <script src="https://unpkg.com/gitmap@latest/dist/index.umd.js"></script>
 
-<!-- Render Heatmap Component -->
+<!-- Render Heatmap + Stats -->
 <script>
   Gitmap.render("#gitmap-heatmap", {
     username: "${username}",
@@ -477,7 +490,17 @@ export default function App() {
     gap: ${gap},
     shape: "${shape}",
     showNumbers: ${showNumbers},
-    useGradient: ${useGradient}
+    useGradient: ${useGradient},
+    onStats: function(stats) {
+      document.getElementById("gitmap-stats").innerHTML = [
+        ["Total", stats.total],
+        ["Current Streak", stats.currentStreak + "d"],
+        ["Longest Streak", stats.longestStreak + "d"],
+        ["Busiest Day", stats.busiestDay]
+      ].map(function(s) {
+        return '<div><small>' + s[0] + '</small><br><strong>' + s[1] + '</strong></div>';
+      }).join("");
+    }
   });
 </script>`;
 
