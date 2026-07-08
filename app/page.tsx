@@ -270,7 +270,7 @@ export default function Home() {
     return () => document.removeEventListener("mousedown", handleOutside);
   }, []);
 
-  const [showNumbers, setShowNumbers] = useState(true);
+  const [showNumbers, setShowNumbers] = useState(false);
   const [useGradient, setUseGradient] = useState(false);
   const [showCounts, setShowCounts] = useState(false);
   const [animationEnabled, setAnimationEnabled] = useState(true);
@@ -300,8 +300,8 @@ export default function Home() {
     root.classList.add("dark");
   }, [themeId, randomPageColors]);
 
-  const [username, setUsername] = useState("arnabjena007");
-  const [inputVal, setInputVal] = useState("arnabjena007");
+  const [username, setUsername] = useState("torvalds");
+  const [inputVal, setInputVal] = useState("torvalds");
   const [key, setKey] = useState(0);
 
   const [rawContributions, setRawContributions] = useState<RawContribution[] | null>(null);
