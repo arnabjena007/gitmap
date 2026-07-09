@@ -608,6 +608,13 @@ export default function App() {
                 onKeyDown={(e) => e.key === "Enter" && handleLoad()}
                 className="bg-transparent border-b border-border hover:border-accent focus:border-accent text-foreground py-1 w-28 outline-none placeholder:text-muted/40 transition-colors"
                 placeholder="username"
+                autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck="false"
+                data-1pass-ignore="true"
+                data-1password-ignore="true"
+                data-lpignore="true"
               />
               <button
                 onClick={handleLoad}
