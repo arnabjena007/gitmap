@@ -253,7 +253,7 @@ export default function Home() {
   const [sizeOpen, setSizeOpen] = useState(false);
   const sizeRef = React.useRef<HTMLDivElement>(null);
 
-  const cellSize = sizeMode === "small" ? 9 : sizeMode === "large" ? 15 : 12;
+  const cellSize = sizeMode === "small" ? 11 : sizeMode === "large" ? 18 : 14;
   const gap = sizeMode === "small" ? 2 : sizeMode === "large" ? 4 : 3;
 
   const [shape, setShape] = useState<"sharp" | "rounded" | "circle">("rounded");
@@ -458,13 +458,15 @@ export default function Home() {
   }`
     : `"${themeId}"`;
 
-  const usageCode = `import { Gitmap, useGitmapStats } from '@arnabjena007/gitmap';
+  const usageCode = `import { Gitmap } from '@arnabjena007/gitmap';
 
 export default function App() {
-  const stats = useGitmapStats("${username}");
-
   return (
-    <div>
+    <div style={{
+      border: '1px solid rgba(255, 255, 255, 0.08)',
+      borderRadius: '12px',
+      padding: '24px',
+    }}>
       <Gitmap
         username="${username}"
         theme={${themeVal}}
@@ -474,26 +476,17 @@ export default function App() {
         showNumbers={${showNumbers}}
         useGradient={${useGradient}}
       />
-
-      {/* Stats bar */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 12, marginTop: 16 }}>
-        <div><small>Total</small><strong>{stats.total}</strong></div>
-        <div><small>Current Streak</small><strong>{stats.currentStreak}d</strong></div>
-        <div><small>Longest Streak</small><strong>{stats.longestStreak}d</strong></div>
-        <div><small>Busiest Day</small><strong>{stats.busiestDay}</strong></div>
-      </div>
     </div>
   );
 }`;
 
-  const jsEmbedCode = `<!-- Target elements for Gitmap -->
-<div id="gitmap-heatmap"></div>
-<div id="gitmap-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px"></div>
+  const jsEmbedCode = `<!-- Target element for Gitmap with rounded border -->
+<div id="gitmap-heatmap" style="border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:24px"></div>
 
 <!-- Load UMD Script from CDN -->
 <script src="https://unpkg.com/@arnabjena007/gitmap@latest/dist/index.umd.js"></script>
 
-<!-- Render Heatmap + Stats -->
+<!-- Render Heatmap -->
 <script>
   Gitmap.render("#gitmap-heatmap", {
     username: "${username}",
@@ -502,17 +495,7 @@ export default function App() {
     gap: ${gap},
     shape: "${shape}",
     showNumbers: ${showNumbers},
-    useGradient: ${useGradient},
-    onStats: function(stats) {
-      document.getElementById("gitmap-stats").innerHTML = [
-        ["Total", stats.total],
-        ["Current Streak", stats.currentStreak + "d"],
-        ["Longest Streak", stats.longestStreak + "d"],
-        ["Busiest Day", stats.busiestDay]
-      ].map(function(s) {
-        return '<div><small>' + s[0] + '</small><br><strong>' + s[1] + '</strong></div>';
-      }).join("");
-    }
+    useGradient: ${useGradient}
   });
 </script>`;
 
@@ -772,7 +755,12 @@ export default function App() {
         )}
 
         {/* Heatmap Grid container */}
-        <div className="py-6 overflow-hidden rounded-xl">
+        <div
+          className="p-5 sm:p-6 border rounded-xl overflow-hidden"
+          style={{
+            borderColor: "rgba(255, 255, 255, 0.08)",
+          }}
+        >
           <div className="mb-3 flex items-center justify-between">
             <span className="text-xs font-mono text-muted">
               @{username}&apos;s contributions
@@ -794,25 +782,6 @@ export default function App() {
             days={range}
             data={computedData}
           />
-
-          {/* Stats bar */}
-          <div className="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {[
-              { label: "Total", value: stats.total.toLocaleString(), sub: `in ${range}d` },
-              { label: "Current Streak", value: `${stats.currentStreak}d`, sub: stats.currentStreak === 1 ? "day" : "days" },
-              { label: "Longest Streak", value: `${stats.longest}d`, sub: stats.longest === 1 ? "day" : "days" },
-              { label: "Busiest Day", value: stats.busiestLabel, sub: stats.busiestCount > 0 ? `${stats.busiestCount} contributions` : "no data" },
-            ].map(({ label, value, sub }) => (
-              <div
-                key={label}
-                className="flex flex-col gap-0.5 px-3 py-2.5 rounded-lg border border-border bg-card/30"
-              >
-                <span className="text-[10px] font-mono text-muted uppercase tracking-wider">{label}</span>
-                <span className="text-base font-bold font-mono text-foreground leading-tight">{value}</span>
-                <span className="text-[10px] font-mono text-muted/60">{sub}</span>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

@@ -28,7 +28,7 @@ interface HeatmapGridProps {
 
 export default function HeatmapGrid({
   themeObj,
-  cellSize = 12,
+  cellSize = 14,
   gap = 3,
   shape = "rounded",
   showNumbers = false,
