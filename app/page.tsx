@@ -253,8 +253,8 @@ export default function Home() {
   const [sizeOpen, setSizeOpen] = useState(false);
   const sizeRef = React.useRef<HTMLDivElement>(null);
 
-  const cellSize = sizeMode === "small" ? 11 : sizeMode === "large" ? 18 : 14;
-  const gap = sizeMode === "small" ? 2 : sizeMode === "large" ? 4 : 3;
+  const cellSize = sizeMode === "small" ? 18 : sizeMode === "large" ? 11 : 14;
+  const gap = sizeMode === "small" ? 4 : sizeMode === "large" ? 2 : 3;
 
   const [shape, setShape] = useState<"sharp" | "rounded" | "circle">("rounded");
   const [shapeOpen, setShapeOpen] = useState(false);
